@@ -1,0 +1,125 @@
+<section class="display-user">
+  <div>
+    <div class="section-header">
+      <a
+        role="button"
+        [routerLink]="['/dashboard/manager/users']"
+        class="text-decoration-none text-reset"
+      >
+        <i class="fa-1x fa-light fa-arrow-left pe-1"></i> View All  
+        users
+      </a>
+      <h2>User Details</h2>
+    </div>
+<div class="m-3 p-3">
+
+  <mat-card class=" w-100 m-auto" *ngIf="userData">
+
+    
+      <div class="row    d-flex align-items-center justify-content-center mb-4">
+        <div class="col-md-4   d-flex align-items-center justify-content-center mt-3">
+          <img mat-card-image
+        
+          src= "{{newImagePath}}"
+          alt="Photo of a Shiba Inu">
+        </div>
+    
+      
+    </div>
+    <mat-card-content>
+      <div class="row  d-flex align-items-center justify-content-center">
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>User name</mat-label>
+            <input
+              readonly="true"
+              value="{{userData.userName}}" matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input
+              value="{{userData.email}}"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Phone number</mat-label>
+            <input
+              value="{{userData.phoneNumber}}"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Country</mat-label>
+            <input
+              value="{{userData.country}}"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Group</mat-label>
+            <input
+              value="{{userData.group.name}}"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Creation date</mat-label>
+            <input
+              value="{{userData.creationDate| date:'fullDate'}}"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Modification date</mat-label>
+            <input
+              value="{{userData.modificationDate|date}}"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Sattus</mat-label>
+            <input *ngIf=" userData.isActivated"
+              value="Active"
+              readonly="true"
+              matInput />
+            <input *ngIf=" !userData.isActivated"
+              value="Not active"
+              readonly="true"
+              matInput />
+          </mat-form-field>
+        </div>
+   
+        </div>
+    
+   
+    
+    </mat-card-content>
+    <mat-card-actions 
+    class="d-flex justify-content-between align-content-center px-4 py-1 pb-4">
+      <a
+        role="button"
+        [routerLink]="['/dashboard/manager/users']"
+        class="outline-btn text-decoration-none px-4 ms-5"
+      >
+        Cancel
+      </a>
+      
+    </mat-card-actions>
+  </mat-card>
+</div>
+  </div></section>

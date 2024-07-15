@@ -1,0 +1,60 @@
+<section>
+  <p>welcome to PMS</p>
+  <h2>Verify Account</h2>
+
+  <form [formGroup]="verifyForm" (ngSubmit)="sendVerifyForm()">
+    <div>
+      <mat-form-field appearance="fill" class="w-100 mt-3">
+        <mat-label>E-mail</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          placeholder="Enter Your Email"
+        />
+        <mat-hint
+          *ngIf="
+            verifyForm.get('email')?.errors && verifyForm.get('email')?.touched
+          "
+          class="text-center text-white"
+        >
+          <ng-container *ngIf="verifyForm.get('email')?.getError('required')">
+            * Email is Requierd
+          </ng-container>
+          <ng-container *ngIf="verifyForm.get('email')?.getError('email')">
+            * Invalid Email
+          </ng-container>
+        </mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="w-100">
+        <mat-label>OTP Verification</mat-label>
+        <input
+          formControlName="code"
+          matInput
+          type="text"
+          placeholder="Enter Verification "
+        />
+        <mat-hint
+          *ngIf="
+            verifyForm.get('code')?.errors && verifyForm.get('code')?.touched
+          "
+          class="text-center text-white"
+        >
+          <ng-container *ngIf="verifyForm.get('code')?.getError('required')">
+            * OTP is Requierd
+          </ng-container>
+          <ng-container *ngIf="verifyForm.get('code')?.getError('pattern')">
+            * Invalid OTP
+          </ng-container>
+        </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="text-center">
+      <button [disabled]="verifyForm.invalid" class="main-btn w-100 mt-4">
+        Save
+      </button>
+    </div>
+  </form>
+</section>

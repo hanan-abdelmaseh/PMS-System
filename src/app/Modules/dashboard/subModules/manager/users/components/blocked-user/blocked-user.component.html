@@ -1,0 +1,38 @@
+<section class="block-dialog p-2">
+
+
+    <ng-container  class="">
+  
+        <!-- <h2 mat-dialog-title >Block this user</h2> -->
+        <mat-dialog-content class="mat-typography" >
+
+            <!-- If not Blocked user  -->
+
+            <p *ngIf="data.isActivated">Are you sure you want to block <span>{{data.userName}}</span>?</p>
+
+            <!-- If Blocked user  -->
+
+            <p *ngIf="!data.isActivated">Are you sure you want to unblock <span>{{data.userName}}</span> ?</p>
+
+        </mat-dialog-content>
+
+        <mat-dialog-actions class="d-flex justify-content-between mx-2">
+            <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+
+            <!-- to Block this user  -->
+            <button type="button" *ngIf="data.isActivated" class="btn btn-outline-danger" 
+           
+                   [mat-dialog-close]="data">Block </button>
+                       
+            <!-- to active this user  -->
+            <button type="button" *ngIf="!data.isActivated"
+             class="btn btn-outline-danger" 
+            [mat-dialog-close]="data">Un block </button>
+        </mat-dialog-actions>
+    </ng-container>
+    
+    
+
+</section>
+
+

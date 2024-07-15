@@ -1,0 +1,22 @@
+.block-dialog {
+  mat-dialog-content {
+    p {
+      span {
+        color: #0e382f;
+        font-weight: bold;
+      }
+    }
+  }
+  .active {
+    color: #fff !important;
+    background-color: rgba(146, 46, 37, 0.7);
+    border-radius: 18px;
+    padding: 10px 15px;
+  }
+  .notActive {
+    color: #fff !important;
+    background-color: rgb(0, 146, 71);
+    border-radius: 18px;
+    padding: 10px 15px;
+  }
+}

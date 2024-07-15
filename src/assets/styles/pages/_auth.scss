@@ -1,0 +1,53 @@
+.auth {
+  min-height: 100vh;
+}
+
+.auth-bg {
+  background-image: var(--imagePath);
+}
+
+.auth-card {
+  background-color: rgba(49, 89, 81, 0.898);
+  border-radius: 16px;
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: #fff;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
+    color: #fff;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #fff;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label--float-above {
+    color: #ef9b28;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
+  }
+
+  p {
+    color: #fff;
+    margin: 0;
+  }
+  h2 {
+    color: #ef9b28;
+    &::first-letter {
+      border-bottom: 4px solid #ef9b28;
+    }
+  }
+
+  .links {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 0.25em;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}

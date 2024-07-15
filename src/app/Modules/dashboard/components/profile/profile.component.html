@@ -1,0 +1,145 @@
+<section>
+  <div>
+    <div class="section-header withButton">
+      <div>
+        <a role="button" [routerLink]="['/dashboard/home']"  class="text-decoration-none text-reset">
+          <i class="fa-1x fa-light fa-arrow-left pe-1"></i>
+          Return Home
+        </a>
+        <h2>Account profile</h2>
+      </div>
+      <button type="button" (click)="toggleEdit()" class="main-btn">
+        <i class="fa-1x fa-light fa-pen-to-square pe-1"></i>
+        {{ onView ? "Enable" : "Disable" }} edit
+      </button>
+    </div>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-2">
+      <mat-card class="p-3 m-3">
+        <mat-card-content class="p-5">
+          <div class="d-flex-center w-100 mb-2">
+            <div 
+              class="d-flex-center position-relative border rounded-circle overflow-hidden  mb-3"
+            >
+              <label
+                for="Image"
+                class="w-100 h-100 position-relative z-1 curser-pointer p-6"
+                ><i
+                  class="fa-light fa-camera"
+                  [ngClass]="{ 'opacity-0': imageSrc }"
+                ></i
+              ></label>
+              <input
+                type="file"
+                formControlName="profileImage"
+                id="Image"
+                (change)="onSelect($event)"
+                [readonly]="onView"
+                hidden
+              />
+              <img
+                *ngIf="imageSrc"
+                class="w-100 h-100 pointer-event-none position-absolute z-0"
+                [src]="imageSrc"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>User name</mat-label>
+                  <input
+                    formControlName="userName"
+                    [readonly]="onView"
+                    matInput
+                    placeholder="Enter Your User Name"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>E-mail</mat-label>
+                  <input
+                    formControlName="email"
+                    [readonly]="onView"
+                    matInput
+                    placeholder="Enter Your Email"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Country</mat-label>
+                  <input
+                    formControlName="country"
+                    [readonly]="onView"
+                    matInput
+                    placeholder="Enter Your Country"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Phone number</mat-label>
+                  <input
+                    formControlName="phoneNumber"
+                    [readonly]="onView"
+                    matInput
+                    placeholder="Enter Your Phone Number"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="!onView">
+            <div class="col-md-6">
+              <div>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Confirm password</mat-label>
+                  <input
+                    formControlName="confirmPassword"
+                    matInput
+                    [type]="hideConfirm ? 'password' : 'text'"
+                    placeholder="Confirm New Password"
+                  />
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="hideConfirm = !hideConfirm"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hideConfirm"
+                  >
+                    <mat-icon>{{
+                      hideConfirm ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions
+          class="d-flex justify-content-between align-content-center px-4 py-1 pb-4"
+        >
+          <a
+            role="button"
+            [routerLink]="['/dashboard/home']"
+            class="text-decoration-none outline-btn px-4"
+            >Cancel</a
+          >
+          <button type="submit" *ngIf="!onView" class="main-btn px-5">
+            Save
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</section>

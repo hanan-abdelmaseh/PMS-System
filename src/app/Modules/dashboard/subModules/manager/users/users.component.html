@@ -1,0 +1,235 @@
+<section >
+  <div >
+    <div class="section-header withButton">
+      <h2>Users</h2>
+    </div>
+    <div class="p-4">
+      <mat-card>
+        <mat-card-header>
+          <!--search by -->
+          <mat-form-field appearance="outline" class="w-25 me-5">
+            <mat-label>Search By</mat-label>
+            <mat-select
+              disableRipple
+              [(ngModel)]="searchBy"
+              (selectionChange)="resetParams()"
+            >
+              <mat-option value="userName">Name</mat-option>
+              <mat-option value="email">Email</mat-option>
+              <mat-option value="country">Country</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!--search-->
+          <mat-form-field appearance="outline" class="w-25 me-5">
+            <button mat-icon-button matPrefix>
+              <mat-icon>search</mat-icon>
+            </button>
+            <mat-label>Search</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Search"
+              [(ngModel)]="SearchValue"
+              (keyup.enter)="getAllUsers()"
+            />
+            <button
+            *ngIf="SearchValue"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="resetSearchInput()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <!--filter-->
+          <mat-form-field appearance="outline" class="w-25">
+            <mat-label>Group</mat-label>
+
+            <mat-select
+              [(ngModel)]="groupsID"
+              (selectionChange)="getAllUsers()"
+            >
+              <mat-option value="">ALL</mat-option>
+              <mat-option value="1">Manager</mat-option>
+              <mat-option value="2"> Empolyee</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="m-0 overflow-x-auto">
+            <!--table-->
+            <ng-container *ngIf="listOfUsers.length == 0">
+              <table mat-table class="mat-elevation-z8">
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Title Column -->
+                <ng-container matColumnDef="User Name">
+                  <th mat-header-cell *matHeaderCellDef>User name</th>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="Status">
+                  <th mat-header-cell *matHeaderCellDef>Status</th>
+                </ng-container>
+
+                <!-- Phone Numer Column -->
+
+                <ng-container matColumnDef="Phone Number">
+                  <th mat-header-cell *matHeaderCellDef>Phone number</th>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="Email">
+                  <th mat-header-cell *matHeaderCellDef>Email</th>
+                </ng-container>
+                <!-- Country Column -->
+                <ng-container matColumnDef="Country">
+                  <th mat-header-cell *matHeaderCellDef>Country</th>
+                </ng-container>
+                <!--CreationDate-->
+                <ng-container matColumnDef="CreationDate">
+                  <th mat-header-cell *matHeaderCellDef>Creation date</th>
+                </ng-container>
+                <!--action-->
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>Action</th>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+              <app-not-found></app-not-found>
+            </ng-container>
+            <ng-container *ngIf="listOfUsers.length > 0">
+              <table
+                mat-table
+                [dataSource]="listOfUsers"
+                class="mat-elevation-z8"
+              >
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Title Column -->
+                <ng-container matColumnDef="User Name">
+                  <th mat-header-cell *matHeaderCellDef>User name</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.userName }}
+                  </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="Status">
+                  <th mat-header-cell *matHeaderCellDef>Status</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span
+                      class="status active"
+                      *ngIf="element.isActivated"
+                    >
+                      Active
+                    </span>
+                    <span
+                      class="status notActive"
+                      *ngIf="!element.isActivated"
+                    >
+                      Not active
+                    </span>
+                  </td>
+                </ng-container>
+
+                <!-- Phone Numer Column -->
+
+                <ng-container matColumnDef="Phone Number">
+                  <th mat-header-cell *matHeaderCellDef>Phone number</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.phoneNumber }}
+                  </td>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="Email">
+                  <th mat-header-cell *matHeaderCellDef>Email</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.email }}
+                  </td>
+                </ng-container>
+                <!-- Country Column -->
+                <ng-container matColumnDef="Country">
+                  <th mat-header-cell *matHeaderCellDef>Country</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.country }}
+                  </td>
+                </ng-container>
+                <!--CreationDate-->
+                <ng-container matColumnDef="CreationDate">
+                  <th mat-header-cell *matHeaderCellDef>Creation date</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.creationDate | date }}
+                  </td>
+                </ng-container>
+                <!--action-->
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>Action</th>
+
+                  <td mat-cell *matCellDef="let element">
+                    <button
+                      mat-icon-button
+                      [matMenuTriggerFor]="menu"
+                      aria-label="Example icon-button with a menu"
+                    >
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button
+                        mat-menu-item
+                        [routerLink]="[
+                          '/dashboard/manager/users/view/',
+                          element.id,
+                          'view'
+                        ]"
+                      >
+                        <mat-icon>visibility</mat-icon>
+                        <span>View</span>
+                      </button>
+                      <button (click)="openBlcockDialog(element)" 
+                       mat-menu-item>
+                        <span *ngIf="element.isActivated"   class="d-flex align-items-center justify-content-between" >
+                          <mat-icon >block</mat-icon>
+                          <span >Block</span>
+                        </span>
+                        <span *ngIf="!element.isActivated"  class="d-flex align-items-center justify-content-between" >
+                          <mat-icon>check_circle</mat-icon>
+                          <span>Unblock</span>
+                        </span>
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+
+              <!--end of table-->
+              <mat-paginator
+                [length]="pagination.totalNumberOfRecords"
+                [pageSize]="pagination.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="changePage($event)"
+                aria-label="Select page"
+              >
+              </mat-paginator>
+            </ng-container>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

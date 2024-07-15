@@ -1,0 +1,85 @@
+@use "../abstracts/variables" as *;
+
+.button {
+  font-size: $default-font-size;
+  line-height: $default-line-height;
+  color: $default-color;
+  background-color: $default-bg-color;
+  border: $default-border;
+  border-radius: $default-border-radius;
+  padding: $default-padding;
+
+  &:disabled {
+    color: $default-color !important;
+    background-color: $default-bg-color !important;
+    border-color: $default-bg-color !important;
+  }
+
+  &.small-text {
+    $default-font-size: 16px;
+    $default-padding: 10px;
+    font-size: $default-font-size;
+    padding: $default-padding;
+  }
+
+  &.button-primary {
+    $default-border: none;
+    $default-color: hsl(0, 0%, 100%);
+    $default-bg-color: hsl(131, 38%, 46%);
+
+    color: $default-color;
+    background-color: $default-bg-color;
+    border: $default-border;
+  }
+
+  &.button-danger {
+    $default-color: hsl(0, 90%, 43%);
+    $default-bg-color: transparent;
+
+    color: $default-color;
+    background-color: $default-bg-color;
+    border-color: $default-color;
+
+    &:hover {
+      $default-color: hsl(0, 0%, 100%);
+      $default-bg-color: hsl(0, 90%, 43%);
+
+      color: $default-color;
+      background-color: $default-bg-color;
+    }
+  }
+}
+
+.main-btn {
+  border: none;
+  padding: 15px;
+  color: #fff;
+  background-color: #ef9b28;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.outline-btn {
+  border: 1px solid #000000;
+  color: #000000;
+  padding: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: 0.4s;
+  &:hover {
+    background-color: #000000;
+    color: #fff;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

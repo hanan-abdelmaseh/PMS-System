@@ -1,0 +1,44 @@
+<section>
+  <div class="p-2">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md-2 text-start">
+        <img src="assets/images/logo-dark.png" alt="logo" />
+      </div>
+      <div class="col-md-3 d-flex align-items-center justify-content-around">
+        <div class="pe-2 border-end">
+          <button class="border-0 bg-transparent">
+            <i class="fa-solid fa-bell"></i>
+          </button>
+        </div>
+        <div class="native-dropdown">
+          <button
+            class="d-flex align-items-center justify-content-between btn dropdown-toggle text-capitalize"
+            [matMenuTriggerFor]="menu"
+          >
+            <div class="profilePic">
+              <img [src]="imgUrl !== ''? imgUrl: dummyImage" />
+            </div>
+            <div class="d-flex flex-column align-items-start px-2 pe-4">
+                <p class="m-0">{{ UserName }}</p>
+                <p class="m-0 text-sm">{{ UserEmail }}</p>
+            </div>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button class="menu-item" mat-menu-item (click)="openProfile()">
+              Account Profile
+            </button>
+            <button routerLink="/dashboard/changePassword"
+              class="menu-item"
+              mat-menu-item
+            >
+              Change Password
+            </button>
+            <button class="menu-item" mat-menu-item (click)="logout()">
+              Logout
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

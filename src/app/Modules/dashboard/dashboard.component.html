@@ -1,0 +1,16 @@
+
+<section class="vh-100">
+    <div class="container-fluid">
+        <div #navbar class="row position-relative z-2 shadow-sm">
+            <app-navbar></app-navbar>
+        </div>
+        <div class="row flex-nowrap overflow-x-hidden">
+            <div #sidebar class="w-auto px-0 sideBar-bg">
+                <app-sidebar [height]="height"></app-sidebar>
+            </div>
+            <div #mainSection class="bg-grey px-0">
+                <router-outlet #RouteOutlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</section>

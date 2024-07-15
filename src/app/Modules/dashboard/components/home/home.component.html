@@ -1,0 +1,68 @@
+<section>
+  <div class="home my-3 mx-4 px-5 d-flex rounded-3 align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <h2>Welcome <span class="color-main">{{userName}}</span></h2>
+
+            <h3 *ngIf="isManagerRole">You can add project and assign tasks to your team</h3>
+            <h3 *ngIf="isEmployeeRole"> you can check your tasks and projects </h3>
+
+           </div>
+           
+        </div>
+      </div>
+    </div>
+     
+
+  </div>
+
+
+  <div *ngIf="isManagerRole" class="charts-holder">
+    <div class="container">
+      <div class="row justify-content-between g-4">
+        <div class="col-md-6 mb-3">
+          <div>
+            <mat-card>
+            <div class="head">
+              <h4>Tasks</h4>
+              <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+            <div class="w-50 mx-auto">
+              <canvas id="myChart">{{chart}}</canvas>
+            </div>
+          </mat-card>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div>
+            <mat-card  >
+            <div class="head">
+              <h4>Users</h4>
+              <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+         
+            <div class="d-flex justify-content-around mt-5 mb-5">
+              <div class="cart active mb-4">
+                <div class="icon-holder d-flex justify-content-center align-items-center">
+                  <i class="fa-brands fa-creative-commons-sampling"></i>
+                </div>
+                <p>active</p>
+                <h3>{{userData?.activatedEmployeeCount}}</h3>
+              </div>
+              <div class="cart dactive">
+                <div class="icon-holder d-flex justify-content-center align-items-center">
+                  <i class="fa-brands fa-ideal"></i>
+                </div>
+                <p>in active</p>
+                <h3>{{userData?.deactivatedEmployeeCount}}</h3>
+              </div>
+            </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

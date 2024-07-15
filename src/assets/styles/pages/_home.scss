@@ -1,0 +1,55 @@
+.home {
+  background-image: url("../../images/home-bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+  color: #fff;
+
+  h2,
+  h3 {
+    font-weight: 300;
+  }
+}
+
+.head {
+  border-left: 4px solid #ef9b28;
+  padding: 0 10px;
+  margin: 10px 0;
+  p {
+    color: #777;
+  }
+}
+
+.cart {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  padding: 20px;
+
+  i {
+    font-size: 25px;
+  }
+
+  .icon-holder {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  p {
+    color: #777;
+  }
+  &.active {
+    background-color: #e5e6f4;
+    .icon-holder {
+      background-color: #cfd1ec;
+    }
+  }
+
+  &.dactive {
+    background-color: #f4f4e5;
+    .icon-holder {
+      background-color: #e4e4bc;
+    }
+  }
+}

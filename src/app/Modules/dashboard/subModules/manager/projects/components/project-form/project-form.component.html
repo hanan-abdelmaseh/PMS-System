@@ -1,0 +1,77 @@
+<section>
+  <div>
+    <div class="section-header">
+      <a
+        role="button"
+        [routerLink]="['/dashboard/manager/projects']"
+        class="text-decoration-none text-reset"
+      >
+        <i class="fa-1x fa-light fa-arrow-left pe-1"></i> Return Projects
+      </a>
+      <h2>Projects</h2>
+    </div>
+    <form [formGroup]="ProjectForm" (ngSubmit)="onSubmit()" class="p-4">
+      <mat-card class="p-3">
+        <mat-card-content>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Title</mat-label>
+            <input
+              formControlName="title"
+              matInput
+              type="text"
+              placeholder="Enter Your Title"
+              [readonly]="view === 'true'"
+            />
+            <mat-hint
+              *ngIf="
+                ProjectForm.get('title')?.errors &&
+                ProjectForm.get('title')?.touched
+              "
+              class="text-center text-white"
+            >
+              <ng-container
+                *ngIf="ProjectForm.get('title')?.getError('required')"
+              >
+                * Title is Requierd
+              </ng-container>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea
+              formControlName="description"
+              matInput
+              type="text"
+              placeholder="Enter Your Description"
+              [readonly]="view === 'true'"
+              [rows]="6"
+            ></textarea>
+            <mat-hint
+              *ngIf="
+                ProjectForm.get('description')?.errors &&
+                ProjectForm.get('description')?.touched
+              "
+              class="text-center text-white"
+            >
+              <ng-container
+                *ngIf="ProjectForm.get('description')?.getError('required')"
+              >
+                * Description is Requierd
+              </ng-container>
+            </mat-hint>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions  class="d-flex justify-content-between align-content-center px-4 py-1 pb-4">
+          <a
+            role="button"
+            [routerLink]="['/dashboard/manager/projects']"
+            class="outline-btn text-decoration-none px-4"
+          >
+            Cancel
+          </a>
+          <button type="submit" *ngIf="view === 'false'" class="main-btn px-5">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</section>

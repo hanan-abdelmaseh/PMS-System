@@ -1,0 +1,13 @@
+.mat-mdc-menu-item{
+    .mat-mdc-menu-item-text{
+        display: flex !important;
+    }
+}
+
+.mat-mdc-table{
+    .mat-mdc-header-cell.cdk-header-cell{
+        background-color:  rgba(49, 89, 81, 0.9) !important;
+        color:#fff;
+        border: 1px solid rgba(25, 61, 57, 0.9) !important;
+    }
+}

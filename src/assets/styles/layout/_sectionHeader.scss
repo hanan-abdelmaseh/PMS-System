@@ -1,0 +1,19 @@
+.section-header {
+  width: 100%;
+  padding-block: 1.1rem;
+  padding-inline: 3rem;
+  background-color: hsl(0, 0%, 100%);
+
+  h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: hsl(0, 0%, 31%);
+  }
+
+  &.withButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

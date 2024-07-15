@@ -1,0 +1,135 @@
+<section>
+    <div>
+      <div class="section-header">
+        <a
+          role="button"
+          [routerLink]="['/dashboard/manager/tasks']"
+          class="text-decoration-none text-reset"
+        >
+          <i class="fa-1x fa-light fa-arrow-left pe-1"></i> View All  Tasks
+        </a>
+        <h2>Add New Task</h2>
+      </div>
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm)" class="p-4">
+        <mat-card class=" p-3">
+          <mat-card-content>
+            <!--title-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Title</mat-label>
+              <input 
+                formControlName="title"
+                matInput
+                type="text"
+                placeholder="Enter Your Title"
+               [readonly]="disabledView"
+              />
+              <mat-hint
+                *ngIf="
+                  taskForm.get('title')?.errors &&
+                  taskForm.get('title')?.touched
+                "
+                class="text-center text-white"
+              >
+                <ng-container
+                  *ngIf="taskForm.get('title')?.getError('required')"
+                >
+                  * Title is Requierd
+                </ng-container>
+
+              </mat-hint>
+            </mat-form-field>
+            <!--description-->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Description</mat-label>
+              <textarea
+                formControlName="description"
+                matInput
+                type="text"
+                placeholder="Enter Your Description"
+                [readonly]="disabledView"
+                [rows]="2"
+              ></textarea>
+              <mat-hint
+                *ngIf="
+                  taskForm.get('description')?.errors &&
+                  taskForm.get('description')?.touched
+                "
+                class="text-center text-white"
+              >
+                <ng-container
+                  *ngIf="taskForm.get('description')?.getError('required')"
+                >
+                  * Description is Requierd
+                </ng-container>
+              </mat-hint>
+            </mat-form-field>
+            <!--Project-->
+            <mat-form-field appearance="outline" class="w-25 me-5" >
+                <mat-label>Project</mat-label>
+                <mat-select   formControlName="projectId"  >
+                   
+                    <mat-option *ngFor="let project of Projectsdata"  [disabled]="disabledView" 
+                    [value]="project.id" >
+                        {{project.title}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint
+                *ngIf="
+                  taskForm.get('projectId')?.errors &&
+                  taskForm.get('projectId')?.touched
+                "
+                class="text-center text-white"
+              >
+                <ng-container
+                  *ngIf="taskForm.get('projectId')?.getError('required')"
+                >
+                  * Project is Requierd
+                </ng-container>
+              </mat-hint>
+            </mat-form-field>
+
+           
+              <!--user-->
+              <mat-form-field appearance="outline" class="w-25"  >
+                <mat-label>Employee</mat-label>
+                <mat-select   formControlName="employeeId" >
+                   
+                    <mat-option *ngFor="let user of UsersData"  [disabled]="disabledView" 
+                    [value]="user.id"  >
+                        {{user.userName}} 
+                    </mat-option>
+                </mat-select>
+                <mat-hint
+                *ngIf="
+                  taskForm.get('employeeId')?.errors &&
+                  taskForm.get('employeeId')?.touched
+                "
+                class="text-center text-white"
+              >
+                <ng-container
+                  *ngIf="taskForm.get('employeeId')?.getError('required')"
+                >
+                  * Employee is Requierd
+                </ng-container>
+              </mat-hint>
+            </mat-form-field>
+
+          </mat-card-content>
+          <mat-card-actions 
+          class="d-flex justify-content-between align-content-center px-4 py-1 pb-4">
+            <a
+              role="button"
+              [routerLink]="['/dashboard/manager/tasks']"
+              class="outline-btn text-decoration-none px-4"
+            >
+              Cancel
+            </a>
+            <button type="submit" class="main-btn px-5"
+            
+            [hidden]="disabledView"
+            >Save</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </section>
